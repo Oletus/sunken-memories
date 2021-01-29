@@ -268,7 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9264250c6af6a724880d7fafdcefcbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RopeSectionTemplate: {fileID: 0}
+  RopeSectionPrefab: {fileID: 1796701751599211242, guid: 8e49a9953d8bb5144a089a774bc20463, type: 3}
+  RopeSectionLength: 1
+  MaxSectionCount: 20
 --- !u!4 &1010784277
 Transform:
   m_ObjectHideFlags: 0
