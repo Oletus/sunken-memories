@@ -84,9 +84,13 @@ public class FishingLine : MonoBehaviour
         {
             Rigidbody2D lastSection = RopeSections[RopeSections.Count - 1];
             float useSpeedDown = FishingLineSpeedDown;
-            if (RopeSections.Count >= MaxSectionCount)
+            if ( RopeSections.Count >= MaxSectionCount )
             {
                 useSpeedDown = Mathf.Min(FishingLineSpeedDown, 0.0f);
+            }
+            if ( RopeSections.Count == 1 )
+            {
+                useSpeedDown = Mathf.Max(FishingLineSpeedDown, 0.0f);
             }
             lastSection.MovePosition(lastSection.position + Vector2.down * useSpeedDown);
             if (lastSection.position.y < transform.position.y - RopeSectionLength * 0.5f)
