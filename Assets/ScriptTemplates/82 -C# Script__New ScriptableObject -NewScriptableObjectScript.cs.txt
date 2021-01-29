@@ -1,0 +1,10 @@
+﻿using UnityEngine;
+
+// Unity generates a lot of spurious "never assigned" warnings for serialized variables, so disable those.
+#pragma warning disable 649
+
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "#SCRIPTNAME#")]
+public class #SCRIPTNAME# : ScriptableObject
+{
+
+}

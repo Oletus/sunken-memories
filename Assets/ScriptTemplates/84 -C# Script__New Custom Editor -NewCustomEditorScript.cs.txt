@@ -1,0 +1,49 @@
+﻿#if UNITY_EDITOR
+using UnityEditor;
+using UnityEngine;
+
+[CustomEditor(typeof())]
+public class #SCRIPTNAME#: Editor
+{
+
+    //SerializedProperty prop;
+
+    private void OnEnable()
+    {
+        // prop = serializedObject.FindProperty("prop");
+    }
+
+    protected void OnSceneGUI()
+    {
+        // Disable mouse controls.
+        //HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
+
+        #SCRIPTNAME# myTarget = ((#SCRIPTNAME#)target);
+
+        Event e = Event.current;
+        if ( e.type == EventType.KeyDown )
+        {
+            switch ( e.keyCode )
+            {
+            }
+        }
+
+        if ( e.isMouse && e.button == 0 && !e.alt )
+        {
+            if ( e.type == EventType.MouseDown )
+            {
+                
+            }
+            if ( e.type == EventType.MouseUp )
+            {
+                
+            }
+        }
+
+        {
+            Handles.matrix = myTarget.transform.localToWorldMatrix;
+        }
+    }
+
+}
+#endif
