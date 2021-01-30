@@ -10,6 +10,7 @@ public class BoatController : MonoBehaviour
     private float HorizontalInput;
 
     [SerializeField] private Rigidbody RB;
+    [SerializeField] private HingeJoint FishingLineJoint;
     [SerializeField] private Rigidbody FishingLine;
 
     [SerializeField] private float HorizontalAcceleration = 1.0f;
@@ -22,6 +23,11 @@ public class BoatController : MonoBehaviour
     private float TiltAngle;
 
     private float HorizontalSpeed;
+
+    private void Awake()
+    {
+        FishingLineJoint.anchor = RB.transform.worldToLocalMatrix.MultiplyPoint(FishingLine.transform.position);
+    }
 
     private void Update ()
     {

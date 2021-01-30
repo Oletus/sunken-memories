@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RB: {fileID: 5106164443979283050}
+  FishingLineJoint: {fileID: 5106164443979283048}
   FishingLine: {fileID: 5106164444266924745}
   HorizontalAcceleration: 8
   HorizontalMaxSpeed: 3
