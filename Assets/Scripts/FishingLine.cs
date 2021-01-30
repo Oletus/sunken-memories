@@ -19,6 +19,8 @@ public class FishingLine : MonoBehaviour
 
     [SerializeField] private float FishingLineMaxSpeed = 3.0f;
 
+    [SerializeField] private LineRenderer LineRenderer;
+
     private bool FishingLineVerticalButton;
 
     private List<Rigidbody2D> RopeSections; // Top section is last in the list.
@@ -86,6 +88,22 @@ public class FishingLine : MonoBehaviour
     private void Update ()
     {
         FishingLineVerticalButton = Input.GetButton("Vertical");
+    }
+
+    private void LateUpdate()
+    {
+        if (LineRenderer == null)
+        {
+            return;
+        }
+        List<Vector3> positions = new List<Vector3>();
+        for ( int i = 0; i < RopeSections.Count; ++i )
+        {
+            positions.Add(RopeSections[i].transform.localToWorldMatrix.MultiplyPoint(Vector3.down * RopeSectionLength * 0.5f));
+        }
+        positions.Add(transform.position);
+        LineRenderer.positionCount = positions.Count;
+        LineRenderer.SetPositions(positions.ToArray());
     }
 
     private void FixedUpdate()
