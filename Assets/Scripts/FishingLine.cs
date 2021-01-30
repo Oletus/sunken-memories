@@ -57,7 +57,9 @@ public class FishingLine : MonoBehaviour
             {
                 RopeEnd.connectedBody = newTopSection;
                 RopeEnd.connectedAnchor = Vector2.down * RopeSectionLength * 0.5f;
-                RopeEnd.GetComponent<Rigidbody2D>().position = newTopSection.position + Vector2.down * RopeSectionLength * 0.5f - (Vector2)RopeEnd.transform.localToWorldMatrix.MultiplyPoint(RopeEnd.anchor);
+                RopeEnd.GetComponent<Rigidbody2D>().position =
+                    newTopSection.position + Vector2.down * RopeSectionLength * 0.5f -
+                    (Vector2)RopeEnd.transform.localToWorldMatrix.MultiplyVector(RopeEnd.anchor);
             }
         }
         RopeTopJoint.connectedBody = newTopSection;
@@ -97,7 +99,9 @@ public class FishingLine : MonoBehaviour
             return;
         }
         List<Vector3> positions = new List<Vector3>();
-        for ( int i = 0; i < RopeSections.Count; ++i )
+
+        positions.Add(RopeEnd.transform.localToWorldMatrix.MultiplyPoint(RopeEnd.anchor));
+        for ( int i = 1; i < RopeSections.Count; ++i )
         {
             positions.Add(RopeSections[i].transform.localToWorldMatrix.MultiplyPoint(Vector3.down * RopeSectionLength * 0.5f));
         }
