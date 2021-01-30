@@ -238,8 +238,8 @@ MonoBehaviour:
   FishingLine: {fileID: 5106164444266924745}
   HorizontalAcceleration: 8
   HorizontalMaxSpeed: 3
-  TiltAcceleration: 1000
-  TiltSpringConstant: 10
+  TiltAcceleration: 10000
+  TiltSpringConstant: 1
 --- !u!114 &3044270711287836821
 MonoBehaviour:
   m_ObjectHideFlags: 0
