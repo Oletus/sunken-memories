@@ -21,7 +21,13 @@ public class Magnetic : MonoBehaviour
     private void Awake()
     {
         IsMagnetic = true;
+
         Magnet = GameObject.Find("Magnet");
+        
+        if (objectRenderer == null)
+        {
+            return;
+        }
         //objectRenderer.sharedMaterial.SetColor("_Color", color);
         objectRenderer.material.SetColor("_EmissionColor", color);
         objectRenderer.material.SetColor("_BaseColor", color);
@@ -30,8 +36,13 @@ public class Magnetic : MonoBehaviour
 
     private void Update()
     {
+
         float distance = Vector3.Distance(gameObject.transform.position, Magnet.transform.position);
 
+        if (objectRenderer == null)
+        {
+            return;
+        }
         if (distance < 10)
         {
             float t = Mathf.InverseLerp(10, 2, distance);
