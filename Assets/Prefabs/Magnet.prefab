@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2366931867207511747}
   - component: {fileID: 8851785034057510656}
   - component: {fileID: 4272014045706229431}
+  - component: {fileID: 4875679968951387273}
   m_Layer: 0
   m_Name: Magnet
   m_TagString: Untagged
@@ -106,6 +107,21 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &4875679968951387273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819022560266158230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c276ad49e72b74c4fb177437b7cf74f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttractionRadius: 2
+  AttractionForce: 15
+  ForceLinearity: 0.4
 --- !u!1 &4505832642453357136
 GameObject:
   m_ObjectHideFlags: 0
