@@ -4862,6 +4862,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsMagnetic: 0
   TreasureID: -1
+  color: {r: 0.08235294, g: 0.037254903, b: 0.078431375, a: 1}
+  color2: {r: 2.9960785, g: 2.5568628, b: 0.28235295, a: 1}
+  objectRenderer: {fileID: 7342735828681015344}
 --- !u!50 &7655561718153910088
 Rigidbody2D:
   serializedVersion: 4
