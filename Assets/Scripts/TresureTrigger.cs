@@ -14,7 +14,7 @@ public class TresureTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Magnetic magnetic = collision.GetComponent<Magnetic>();
-        if (magnetic != null)
+        if (magnetic == null)
         {
             return;
         }
