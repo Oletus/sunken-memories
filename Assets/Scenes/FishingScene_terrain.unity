@@ -1253,6 +1253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7099ceb7e2a2bd41aba1b06226c1165, type: 3}
+--- !u!1 &519089322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822185835599160713, guid: f65347edec623e746a2f38a2af24768f, type: 3}
+  m_PrefabInstance: {fileID: 1939168515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &543418100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d6ddefc35f8023942b0bb47734b8143b, type: 3}
@@ -4230,6 +4235,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d6ddefc35f8023942b0bb47734b8143b, type: 3}
   m_PrefabInstance: {fileID: 1083525672}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1986468288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3904155853344607977, guid: fa1029bdeb100b548811001fb352df4f, type: 3}
+  m_PrefabInstance: {fileID: 371912167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2040894147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d6ddefc35f8023942b0bb47734b8143b, type: 3}
@@ -4242,6 +4252,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 42817615, guid: 58d75789c5a92b740b47d45729e2c738, type: 3}
+      propertyPath: WinScreen.Array.data[0]
+      value: 
+      objectReference: {fileID: 1986468288}
+    - target: {fileID: 42817615, guid: 58d75789c5a92b740b47d45729e2c738, type: 3}
+      propertyPath: WinScreen.Array.data[1]
+      value: 
+      objectReference: {fileID: 519089322}
     - target: {fileID: 5106164445339239972, guid: 58d75789c5a92b740b47d45729e2c738, type: 3}
       propertyPath: m_Name
       value: BoatParent
