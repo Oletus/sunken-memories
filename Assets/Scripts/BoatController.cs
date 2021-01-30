@@ -9,9 +9,9 @@ public class BoatController : MonoBehaviour
 {
     private float HorizontalInput;
 
-    [SerializeField] private Rigidbody RB;
-    [SerializeField] private HingeJoint FishingLineJoint;
-    [SerializeField] private Rigidbody FishingLine;
+    [SerializeField] private Rigidbody2D RB;
+    [SerializeField] private HingeJoint2D FishingLineJoint;
+    [SerializeField] private Rigidbody2D FishingLine;
 
     [SerializeField] private float HorizontalAcceleration = 1.0f;
     [SerializeField] private float HorizontalMaxSpeed = 5.0f;
@@ -29,7 +29,7 @@ public class BoatController : MonoBehaviour
         FishingLineJoint.anchor = RB.transform.worldToLocalMatrix.MultiplyPoint(FishingLine.transform.position);
     }
 
-    private void Update ()
+    private void Update()
     {
         HorizontalInput = Input.GetAxis("Horizontal");
         AngularVelocity = 0.0f;
@@ -46,7 +46,7 @@ public class BoatController : MonoBehaviour
         HorizontalSpeed += HorizontalInput * HorizontalAcceleration * Time.fixedDeltaTime;
         HorizontalSpeed *= 0.99f;
         HorizontalSpeed = Mathf.Clamp(HorizontalSpeed, -HorizontalMaxSpeed, HorizontalMaxSpeed);
-        RB.MovePosition(RB.position + HorizontalSpeed * Vector3.right * Time.fixedDeltaTime);
-        RB.MoveRotation(Quaternion.AngleAxis(TiltAngle, Vector3.forward));
+        RB.MovePosition(RB.position + HorizontalSpeed * Vector2.right * Time.fixedDeltaTime);
+        RB.MoveRotation(TiltAngle);
     }
 }

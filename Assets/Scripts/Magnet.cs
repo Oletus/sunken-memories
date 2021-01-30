@@ -7,14 +7,14 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
-    private HingeJoint MagnetJoint;
+    private HingeJoint2D MagnetJoint;
 
     private void FixedUpdate ()
     {
         // TODO: Add magnetic force
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Magnetic magnetic = collision.gameObject.GetComponent<Magnetic>();
         if ( magnetic && magnetic.IsMagnetic )
@@ -23,15 +23,14 @@ public class Magnet : MonoBehaviour
         }
     }
 
-    private void Attach(Collision collision, Magnetic magnetic)
+    private void Attach(Collision2D collision, Magnetic magnetic)
     {
         if ( MagnetJoint != null )
         {
             return;
         }
-        MagnetJoint = gameObject.AddComponent<HingeJoint>();
-        MagnetJoint.axis = Vector3.forward;
-        ContactPoint contact = collision.GetContact(0);
+        MagnetJoint = gameObject.AddComponent<HingeJoint2D>();
+        ContactPoint2D contact = collision.GetContact(0);
         MagnetJoint.enableCollision = true;
         MagnetJoint.connectedBody = collision.rigidbody;
         MagnetJoint.anchor = transform.worldToLocalMatrix.MultiplyPoint(contact.point);
