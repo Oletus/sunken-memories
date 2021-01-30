@@ -9,6 +9,18 @@ ModelImporter:
   - first:
       74: -3100369314251171874
     second: Idle
+  - first:
+      74: -8301610909719666830
+    second: Pose
+  - first:
+      74: -2437077339981764239
+    second: Boat|Pose
+  - first:
+      74: -3236573946479900570
+    second: Sway
+  - first:
+      74: -827571479038536928
+    second: Boat|Sway
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -29,7 +41,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -38,8 +50,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
-      takeName: Idle
+      name: Sway
+      takeName: Sway
       internalID: 0
       firstFrame: 0
       lastFrame: 60
