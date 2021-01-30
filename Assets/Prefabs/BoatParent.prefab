@@ -121,6 +121,7 @@ MonoBehaviour:
   WinScreen:
   - {fileID: 0}
   - {fileID: 0}
+  Magnet: {fileID: 3044270711287836821}
 --- !u!1 &5106164444266924749
 GameObject:
   m_ObjectHideFlags: 0

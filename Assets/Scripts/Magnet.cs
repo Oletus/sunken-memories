@@ -14,6 +14,13 @@ public class Magnet : MonoBehaviour
         // TODO: Add magnetic force
     }
 
+    public void RemoveMagnetic(Magnetic magnetic)
+    {
+        Destroy(magnetic.gameObject);
+        Destroy(MagnetJoint);
+        MagnetJoint = null;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Magnetic magnetic = collision.gameObject.GetComponent<Magnetic>();

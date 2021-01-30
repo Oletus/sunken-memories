@@ -7,17 +7,19 @@ using UnityEngine;
 
 public class TresureTrigger : MonoBehaviour
 {
-    public List<GameObject> WinScreen;
+    [SerializeField] private List<GameObject> WinScreen;
 
+    [SerializeField] private Magnet Magnet;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Magnetic>() != null) 
+        Magnetic magnetic = collision.GetComponent<Magnetic>();
+        if (magnetic != null) 
         {
-            int treasureID = collision.GetComponent<Magnetic>().TreasureID;
+            int treasureID = magnetic.TreasureID;
             WinScreen[treasureID].SetActive(true);
-        }
-        
 
+            Magnet.RemoveMagnetic(magnetic);
+        }
     }
 }
