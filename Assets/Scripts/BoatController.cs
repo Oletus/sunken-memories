@@ -10,6 +10,8 @@ public class BoatController : MonoBehaviour
     private float HorizontalInput;
 
     [SerializeField] private Rigidbody RB;
+    [SerializeField] private Rigidbody FishingLine;
+
     [SerializeField] private float HorizontalAcceleration = 1.0f;
     [SerializeField] private float HorizontalMaxSpeed = 5.0f;
 
