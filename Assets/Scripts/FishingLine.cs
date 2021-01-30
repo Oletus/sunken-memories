@@ -11,6 +11,8 @@ public class FishingLine : MonoBehaviour
 
     [SerializeField] private HingeJoint RopeTopJoint;
 
+    [SerializeField] private HingeJoint RopeEnd;
+
     [SerializeField] private float RopeSectionLength = 1.0f;
 
     [SerializeField] private int MaxSectionCount = 20;
@@ -38,6 +40,7 @@ public class FishingLine : MonoBehaviour
             Rigidbody prevTopSection = RopeSections[RopeSections.Count - 1];
             newTopSection.position = prevTopSection.position + Vector3.up * RopeSectionLength;
             HingeJoint joint = newTopSection.gameObject.AddComponent<HingeJoint>();
+            joint.axis = Vector3.forward;
             joint.connectedBody = prevTopSection;
             joint.autoConfigureConnectedAnchor = false;
             joint.anchor = Vector3.down * RopeSectionLength * 0.5f;
@@ -47,6 +50,12 @@ public class FishingLine : MonoBehaviour
         else
         {
             TopJointAnchor = -RopeSectionLength * 0.4999f;
+            if (RopeEnd != null)
+            {
+                RopeEnd.connectedBody = newTopSection;
+                RopeEnd.connectedAnchor = Vector3.down * RopeSectionLength * 0.5f;
+                RopeEnd.GetComponent<Rigidbody>().position = newTopSection.position + Vector3.down * RopeSectionLength * 0.5f - RopeEnd.transform.localToWorldMatrix.MultiplyPoint(RopeEnd.anchor);
+            }
         }
         RopeTopJoint.connectedBody = newTopSection;
         RopeTopJoint.connectedAnchor = Vector3.up * TopJointAnchor;
