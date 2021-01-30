@@ -17,6 +17,8 @@ public class FishingLine : MonoBehaviour
 
     [SerializeField] private int MaxSectionCount = 20;
 
+    [SerializeField] private float FishingLineMaxSpeed = 3.0f;
+
     private bool FishingLineVerticalButton;
 
     private List<Rigidbody2D> RopeSections; // Top section is last in the list.
@@ -90,11 +92,11 @@ public class FishingLine : MonoBehaviour
     {
         if ( FishingLineVerticalButton )
         {
-            FishingLineSpeedDown = Mathf.MoveTowards(FishingLineSpeedDown, -5.0f, 50.0f * Time.fixedDeltaTime);
+            FishingLineSpeedDown = Mathf.MoveTowards(FishingLineSpeedDown, -FishingLineMaxSpeed, 50.0f * Time.fixedDeltaTime);
         }
         else
         {
-            FishingLineSpeedDown = Mathf.MoveTowards(FishingLineSpeedDown, 5.0f, 50.0f * Time.fixedDeltaTime);
+            FishingLineSpeedDown = Mathf.MoveTowards(FishingLineSpeedDown, FishingLineMaxSpeed, 50.0f * Time.fixedDeltaTime);
         }
         if ( RopeSections.Count == 0 )
         {
