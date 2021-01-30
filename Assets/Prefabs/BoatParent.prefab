@@ -170,7 +170,7 @@ MonoBehaviour:
   RopeTopJoint: {fileID: 4597425912569805734}
   RopeEnd: {fileID: 4750921722721234483}
   RopeSectionLength: 1
-  MaxSectionCount: 20
+  MaxSectionCount: 15
 --- !u!50 &4713480593261498996
 Rigidbody2D:
   serializedVersion: 4

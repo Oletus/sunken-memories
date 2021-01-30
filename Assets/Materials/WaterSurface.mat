@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4513352957938623834
+--- !u!114 &-7961735077302701009
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,22 +20,19 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SeaBG 1
-  m_Shader: {fileID: -6465566751694194690, guid: fe5c25d2c2b1de84c96041edf9ed71b8, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_Name: WaterSurface
+  m_Shader: {fileID: -6465566751694194690, guid: ba2325571c69ed44aa6cf4ac34770671, type: 3}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_5e23da5a77fb439c82754a23103ee6b0:
-        m_Texture: {fileID: 2800000, guid: aa97d3bf50665794eb941f412f10e5fe, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -93,10 +90,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_6c206754a40d402c943bf2f31e2eb197: 1.46
-    - Vector1_89c3fd580dc04ac5a4c0ea49a0a8229c: 0.13
-    - Vector1_a58f665cb25f44deb7f3023516dec2f9: 0.403
-    - Vector1_cc7a2063be334b1ab2a69075ff226775: 0.44
+    - Vector1_ede9a95d9c21445692032bf60b036724: 0.01
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -106,7 +100,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -119,13 +113,15 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Surface: 0
+    - _SrcBlend: 5
+    - _Surface: 1
     - _WorkflowMode: 1
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - Color_4c44723f11a24540b50cc3a341447b15: {r: 0.74509805, g: 0.42457587, b: 0.34117648, a: 0.7019608}
+    - _BaseColor: {r: 1, g: 0.7799727, b: 0.5613208, a: 0.6313726}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.5283019, g: 0.28657886, b: 0.28657886, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _UVmultiplier: {r: 0.05, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []
