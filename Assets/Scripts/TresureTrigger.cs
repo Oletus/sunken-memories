@@ -14,12 +14,17 @@ public class TresureTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Magnetic magnetic = collision.GetComponent<Magnetic>();
-        if (magnetic != null) 
+        if (magnetic != null)
         {
-            int treasureID = magnetic.TreasureID;
-            WinScreen[treasureID].SetActive(true);
-
-            Magnet.RemoveMagnetic(magnetic);
+            return;
         }
+        int treasureID = magnetic.TreasureID;
+        if (treasureID < 0 || treasureID >= WinScreen.Count)
+        {
+            return;
+        }
+        WinScreen[treasureID].SetActive(true);
+
+        Magnet.RemoveMagnetic(magnetic);
     }
 }

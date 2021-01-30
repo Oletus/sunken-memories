@@ -8,7 +8,7 @@ using UnityEngine;
 public class Magnetic : MonoBehaviour
 {
     public bool IsMagnetic;
-    public int TreasureID;
+    public int TreasureID = -1;
 
     private void Awake()
     {
