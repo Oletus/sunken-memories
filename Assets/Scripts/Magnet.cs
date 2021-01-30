@@ -90,7 +90,7 @@ public class Magnet : MonoBehaviour
 
     private void Detach()
     {
-        if ( MagnetJoint != null )
+        if ( MagnetJoint != null && MagnetJoint.connectedBody != null )
         {
             Detach(MagnetJoint.connectedBody.gameObject);
         }
