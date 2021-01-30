@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 7558651854453866503}
   - component: {fileID: 42817616}
   - component: {fileID: 42817615}
+  - component: {fileID: 557318107912907385}
   m_Layer: 0
   m_Name: BoatRB
   m_TagString: Untagged
@@ -217,6 +218,40 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Magnet: {fileID: 4111347858675153933}
+--- !u!60 &557318107912907385
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5106164443979283052}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.39936, y: 1.3799207}
+      - {x: 0.13821828, y: 1.0921456}
+      - {x: -3.0243309, y: 1.199757}
+      - {x: -2.8453505, y: 0.17386848}
+      - {x: -3.1686642, y: 0.050053492}
+      - {x: -3.0912108, y: -1.1112885}
+      - {x: 2.0621138, y: -0.9625929}
+      - {x: 2.422707, y: -0.180536}
+      - {x: 2.9936156, y: 0.29365954}
 --- !u!1 &5106164444266924749
 GameObject:
   m_ObjectHideFlags: 0
