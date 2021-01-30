@@ -34,10 +34,8 @@ public class Magnetic : MonoBehaviour
 
         if (distance < 10)
         {
-            Debug.Log(objectRenderer.material.name);
             float t = Mathf.InverseLerp(10, 2, distance);
             Color color3 = Color.Lerp(color, color2, t);
-
 
             objectRenderer.material.SetColor("_EmissionColor", color3);
         }
