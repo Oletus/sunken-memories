@@ -601,10 +601,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4f242cdf1bae584db1bf868f91eca42, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: b4f242cdf1bae584db1bf868f91eca42, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0ef92457169f9d24d96dbd6ad84ca7d0, type: 2}
+    - target: {fileID: 6646947488671243230, guid: b4f242cdf1bae584db1bf868f91eca42, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7737962032613791736, guid: b4f242cdf1bae584db1bf868f91eca42, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
