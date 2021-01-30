@@ -19,6 +19,8 @@ public class BoatController : MonoBehaviour
     [SerializeField] private float TiltAcceleration = 1.0f;
     [SerializeField] private float TiltSpringConstant = 1.0f;
 
+    [SerializeField] private Transform CameraReference;
+
     private float AngularVelocity;
     private float TiltAngle;
 
@@ -34,6 +36,11 @@ public class BoatController : MonoBehaviour
         HorizontalInput = Input.GetAxis("Horizontal");
         AngularVelocity = 0.0f;
         TiltAngle = 0.0f;
+
+        if (CameraReference != null)
+        {
+            CameraReference.position = RB.position;
+        }
     }
 
     private void FixedUpdate()
