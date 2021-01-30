@@ -188,6 +188,8 @@ MonoBehaviour:
   RB: {fileID: 224438452}
   HorizontalAcceleration: 8
   HorizontalMaxSpeed: 3
+  TiltAcceleration: 500
+  TiltSpringConstant: 10
 --- !u!59 &224438454
 HingeJoint:
   m_ObjectHideFlags: 0
