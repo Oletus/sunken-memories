@@ -12,6 +12,7 @@ public class Magnet : MonoBehaviour
 
     [Range(0.0f, 1.0f)]
     [SerializeField] private float ForceLinearity = 0.5f;
+    [SerializeField] public ParticleSystem MagnetParticle;
 
     private HingeJoint2D MagnetJoint;
 
@@ -33,6 +34,8 @@ public class Magnet : MonoBehaviour
     {
         if ( MagnetEnabled )
         {
+            var em = MagnetParticle.emission;
+            em.enabled = true;
             Collider2D[] colliders = Physics2D.OverlapCircleAll(RB.position, AttractionRadius);
             foreach ( Collider2D collider in colliders )
             {
@@ -50,6 +53,8 @@ public class Magnet : MonoBehaviour
             }
         } else
         {
+            var em = MagnetParticle.emission;
+            em.enabled = false;
             Detach();
         }
     }
