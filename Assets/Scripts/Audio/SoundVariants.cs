@@ -15,7 +15,7 @@ namespace LPUnityUtils
 
         public int Count => Sounds != null ? Sounds.Count : 0;
 
-        public AudioSourcePlayer.PlayingSound PlayOn(AudioSourcePlayer player, ICollection<int> avoidVariantIndexes, out int soundIndex)
+        public AudioSourcePlayer.PlayingSound PlayOn(AudioSourcePlayer player, ICollection<int> avoidVariantIndexes, out int soundIndex, float volumeScale = 1.0f)
         {
             if ( Count == 0 )
             {
@@ -43,7 +43,7 @@ namespace LPUnityUtils
                     }
                 }
             }
-            return player.Play(Sounds[soundIndex]);
+            return player.Play(Sounds[soundIndex], -1, volumeScale);
         }
     }
 }

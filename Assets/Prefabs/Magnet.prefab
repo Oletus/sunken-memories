@@ -124,7 +124,9 @@ MonoBehaviour:
   AttractionForce: 15
   ForceLinearity: 0.4
   MagnetParticle: {fileID: 2366004425400844875}
+  MagnetPingSound: {fileID: 11400000, guid: d70c02b85f6cb2544af21089188cfeae, type: 2}
   MagnetAttachSound: {fileID: 11400000, guid: d4b0ff666fa9d95419092886c219a42b, type: 2}
+  PingSoundInterval: 1
 --- !u!1 &4505832642453357136
 GameObject:
   m_ObjectHideFlags: 0

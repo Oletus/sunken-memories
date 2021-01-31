@@ -15,7 +15,14 @@ public class Magnet : MonoBehaviour
     [SerializeField] private float ForceLinearity = 0.5f;
     [SerializeField] public ParticleSystem MagnetParticle;
 
+    [SerializeField] private SoundVariants MagnetPingSound;
     [SerializeField] private SoundVariants MagnetAttachSound;
+    [SerializeField] private float PingSoundInterval = 1.0f;
+
+    private float NearestDistance;
+
+    private float NextPingTime;
+    private bool MagnetAttachSoundScheduled;
 
     private HingeJoint2D MagnetJoint;
 
@@ -26,11 +33,30 @@ public class Magnet : MonoBehaviour
     private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
+        NearestDistance = 1.0f;
     }
 
     private void Update()
     {
+        bool wasMagnetEnabled = MagnetEnabled;
         MagnetEnabled = Input.GetButton("Submit");
+        if ( !wasMagnetEnabled && MagnetEnabled )
+        {
+            AudioSourcePlayer.GlobalPlayer.Play(MagnetPingSound);
+            NextPingTime = Time.time + PingSoundInterval;
+        }
+        /*if ( MagnetEnabled && Time.time > NextPingTime)
+        {
+            NextPingTime = Mathf.Max(Time.time - Time.deltaTime, NextPingTime) + PingSoundInterval;
+            Debug.Log("Play ping " + (1.0f - NearestDistance));
+            AudioSourcePlayer.GlobalPlayer.Play(MagnetPingSound, -1, 1.0f - NearestDistance);
+        }*/
+
+        if (MagnetAttachSoundScheduled)
+        {
+            AudioSourcePlayer.GlobalPlayer.Play(MagnetAttachSound);
+            MagnetAttachSoundScheduled = false;
+        }
     }
 
     private void FixedUpdate ()
@@ -39,22 +65,31 @@ public class Magnet : MonoBehaviour
         {
             var em = MagnetParticle.emission;
             em.enabled = true;
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(RB.position, AttractionRadius);
-            foreach ( Collider2D collider in colliders )
+            if ( MagnetJoint == null )
             {
-                Magnetic magnetic = collider.GetComponent<Magnetic>();
-                if (magnetic != null && collider.attachedRigidbody != null)
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(RB.position, AttractionRadius);
+                foreach (Collider2D collider in colliders)
                 {
-                    Vector2 magnetBottomCenter = transform.localToWorldMatrix.MultiplyPoint(Vector2.down * 0.3f);
-                    Vector2 colliderPos = collider.ClosestPoint(magnetBottomCenter);
-                    Vector2 towardsMagnet = (magnetBottomCenter - colliderPos);
-                    float distance = towardsMagnet.magnitude;
-                    float distanceMult = Mathf.Lerp(1.0f / ((distance / AttractionRadius) + 0.01f), (1.0f - distance / AttractionRadius), ForceLinearity);
-                    collider.attachedRigidbody.AddForce(AttractionForce * towardsMagnet * distanceMult, ForceMode2D.Force);
-                    RB.AddForceAtPosition(AttractionForce * -towardsMagnet * distanceMult, magnetBottomCenter);
+                    Magnetic magnetic = collider.GetComponent<Magnetic>();
+                    if (magnetic != null && collider.attachedRigidbody != null)
+                    {
+                        Vector2 magnetBottomCenter = transform.localToWorldMatrix.MultiplyPoint(Vector2.down * 0.3f);
+                        Vector2 colliderPos = collider.ClosestPoint(magnetBottomCenter);
+                        Vector2 towardsMagnet = (magnetBottomCenter - colliderPos);
+                        float distance = towardsMagnet.magnitude;
+                        float distanceMult = Mathf.Lerp(1.0f / ((distance / AttractionRadius) + 0.01f), (1.0f - distance / AttractionRadius), ForceLinearity);
+                        collider.attachedRigidbody.AddForce(AttractionForce * towardsMagnet * distanceMult, ForceMode2D.Force);
+                        RB.AddForceAtPosition(AttractionForce * -towardsMagnet * distanceMult, magnetBottomCenter);
+                        NearestDistance = Mathf.Min(NearestDistance, distance / AttractionRadius);
+                    }
                 }
             }
-        } else
+            else
+            {
+                NearestDistance = 1.0f;
+            }
+        }
+        else
         {
             var em = MagnetParticle.emission;
             em.enabled = false;
@@ -75,7 +110,19 @@ public class Magnet : MonoBehaviour
         if ( MagnetEnabled )
         {
             Magnetic magnetic = collision.gameObject.GetComponent<Magnetic>();
-            if (magnetic && magnetic.IsMagnetic)
+            if ( magnetic )
+            {
+                Attach(collision, magnetic);
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if ( MagnetEnabled )
+        {
+            Magnetic magnetic = collision.gameObject.GetComponent<Magnetic>();
+            if ( magnetic )
             {
                 Attach(collision, magnetic);
             }
@@ -88,7 +135,7 @@ public class Magnet : MonoBehaviour
         {
             return;
         }
-        AudioSourcePlayer.GlobalPlayer.Play(MagnetAttachSound);
+        MagnetAttachSoundScheduled = true;
         MagnetJoint = gameObject.AddComponent<HingeJoint2D>();
         ContactPoint2D contact = collision.GetContact(0);
         MagnetJoint.enableCollision = true;
@@ -111,6 +158,7 @@ public class Magnet : MonoBehaviour
         {
             return false;
         }
+        Debug.Log("Detach magnet");
         Destroy(MagnetJoint);
         MagnetJoint = null;
         return true;
