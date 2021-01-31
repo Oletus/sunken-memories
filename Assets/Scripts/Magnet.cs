@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using LPUnityUtils;
 
 // Unity generates a lot of spurious "never assigned" warnings for serialized variables, so disable those.
 #pragma warning disable 649
@@ -13,6 +14,8 @@ public class Magnet : MonoBehaviour
     [Range(0.0f, 1.0f)]
     [SerializeField] private float ForceLinearity = 0.5f;
     [SerializeField] public ParticleSystem MagnetParticle;
+
+    [SerializeField] private SoundVariants MagnetAttachSound;
 
     private HingeJoint2D MagnetJoint;
 
@@ -85,6 +88,7 @@ public class Magnet : MonoBehaviour
         {
             return;
         }
+        AudioSourcePlayer.GlobalPlayer.Play(MagnetAttachSound);
         MagnetJoint = gameObject.AddComponent<HingeJoint2D>();
         ContactPoint2D contact = collision.GetContact(0);
         MagnetJoint.enableCollision = true;
