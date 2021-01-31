@@ -77,4 +77,9 @@ public class BoatController : MonoBehaviour
         RB.MovePosition(RB.position + HorizontalSpeed * Vector2.right * Time.fixedDeltaTime);
         RB.rotation = TiltAngle;
     }
+
+    private void LateUpdate()
+    {
+        RB.transform.rotation = Quaternion.AngleAxis(TiltAngle, Vector3.forward);
+    }
 }
