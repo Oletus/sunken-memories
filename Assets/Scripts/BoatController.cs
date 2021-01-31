@@ -38,7 +38,11 @@ public class BoatController : MonoBehaviour
     private void Awake()
     {
         FishingLineJoint.anchor = RB.transform.worldToLocalMatrix.MultiplyPoint(FishingLine.transform.position);
-        if ( MoveSoundPlayer != null )
+    }
+
+    private void Start()
+    {
+        if (PlayingBoatSound != null && MoveSoundPlayer != null )
         {
             PlayingBoatSound = MoveSoundPlayer.Play(MoveSound);
         }
