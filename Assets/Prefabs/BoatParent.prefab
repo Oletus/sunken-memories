@@ -290,8 +290,9 @@ MonoBehaviour:
   FishingLineMaxSpeed: 3
   LineRenderer: {fileID: 2523423294730960355}
   MoveSound: {fileID: 11400000, guid: 59cf22790d5209449b088237ce77c3fc, type: 2}
+  MoveSound2: {fileID: 11400000, guid: 48fd39f0ea274e442b2c8edd4df91905, type: 2}
   MoveSoundPlayer: {fileID: 3079284734437329965}
-  MoveSoundVolume: 0.5
+  MoveSoundVolume: 0.35
 --- !u!50 &4713480593261498996
 Rigidbody2D:
   serializedVersion: 4

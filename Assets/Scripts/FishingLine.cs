@@ -23,12 +23,14 @@ public class FishingLine : MonoBehaviour
     [SerializeField] private LineRenderer LineRenderer;
 
     [SerializeField] private SoundVariants MoveSound;
+    [SerializeField] private SoundVariants MoveSound2;
     [SerializeField] private AudioSourcePlayer MoveSoundPlayer;
     [SerializeField] private float MoveSoundVolume = 0.5f;
 
     private float SoundCurrentStrength;
 
-    private AudioSourcePlayer.PlayingSound PlayingSound;
+    private AudioSourcePlayer.PlayingSound PlayingSound1;
+    private AudioSourcePlayer.PlayingSound PlayingSound2;
 
     private float FishingLineVertical;
 
@@ -46,9 +48,13 @@ public class FishingLine : MonoBehaviour
 
     private void Start()
     {
-        if (MoveSound != null && MoveSoundPlayer != null)
+        if ( MoveSound != null && MoveSoundPlayer != null )
         {
-            PlayingSound = MoveSoundPlayer.Play(MoveSound);
+            PlayingSound1 = MoveSoundPlayer.Play(MoveSound);
+        }
+        if ( MoveSound2 != null && MoveSoundPlayer != null)
+        {
+            PlayingSound2 = MoveSoundPlayer.Play(MoveSound2);
         }
     }
 
@@ -108,12 +114,20 @@ public class FishingLine : MonoBehaviour
     {
         FishingLineVertical = Input.GetAxis("Vertical");
 
-        if (PlayingSound != null && PlayingSound.GetAudioSource() != null)
+        SoundCurrentStrength = Mathf.MoveTowards(SoundCurrentStrength, FishingLineSpeedDown / FishingLineMaxSpeed, 1.5f * Time.deltaTime);
+
+        if ( PlayingSound1 != null && PlayingSound1.GetAudioSource() != null)
         {
-            AudioSource boatSoundSource = PlayingSound.GetAudioSource();
-            SoundCurrentStrength = Mathf.MoveTowards(SoundCurrentStrength, Mathf.Abs(FishingLineVertical), 0.5f * Time.deltaTime);
-            boatSoundSource.pitch = SoundCurrentStrength * 0.5f + 0.5f;
-            boatSoundSource.volume = SoundCurrentStrength * MoveSoundVolume;
+            AudioSource lineOutSoundSource = PlayingSound1.GetAudioSource();
+            lineOutSoundSource.pitch = Mathf.Abs(SoundCurrentStrength) * 0.5f + 0.5f;
+            lineOutSoundSource.volume = Mathf.Max(SoundCurrentStrength, 0.0f) * MoveSoundVolume;
+        }
+
+        if ( PlayingSound2 != null && PlayingSound2.GetAudioSource() != null )
+        {
+            AudioSource lineInSoundSource = PlayingSound2.GetAudioSource();
+            lineInSoundSource.pitch = Mathf.Abs(SoundCurrentStrength) * 0.5f + 0.5f;
+            lineInSoundSource.volume = Mathf.Max(-SoundCurrentStrength, 0.0f) * MoveSoundVolume;
         }
     }
 
