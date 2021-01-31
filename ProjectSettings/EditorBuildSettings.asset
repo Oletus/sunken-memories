@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 0b9e4901e95af6b4ebb66346207f6b1f
   - enabled: 1
-    path: Assets/Scenes/FishingScene.unity
-    guid: 35776db2aec53dc44bab5f857385d2bd
+    path: Assets/Scenes/FishingScene_terrain.unity
+    guid: fbf3ebd681f6dd940ab6d6cb7b247899
   m_configObjects: {}
