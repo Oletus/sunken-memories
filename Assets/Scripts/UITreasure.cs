@@ -11,4 +11,12 @@ public class UITreasure : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Submit") == true) 
+        {
+            CloseUI();
+        }      
+    }
 }
