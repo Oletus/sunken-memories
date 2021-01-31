@@ -17,8 +17,11 @@ public class Magnetic : MonoBehaviour
 
     private GameObject Magnet;
 
+    public bool IsMagnetic { get; set; }
+
     private void Awake()
     {
+        IsMagnetic = true;
         Magnet = GameObject.Find("Magnet");
         
         if (objectRenderer == null)

@@ -59,8 +59,12 @@ public class Magnet : MonoBehaviour
         {
             var em = MagnetParticle.emission;
             em.enabled = true;
-            if ( MagnetJoint == null )
+            if (MagnetJoint != null)
             {
+
+            } 
+            else
+            { 
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(RB.position, AttractionRadius);
                 foreach (Collider2D collider in colliders)
                 {
@@ -78,10 +82,6 @@ public class Magnet : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                NearestDistance = 1.0f;
-            }
         }
         else
         {
@@ -95,6 +95,7 @@ public class Magnet : MonoBehaviour
     {
         if ( Detach(magnetic.gameObject) )
         {
+            magnetic.IsMagnetic = false; // Disable magnetism for 1 frame that it takes for the object to be destroyed.
             Destroy(magnetic.gameObject);
         }
     }
@@ -104,7 +105,7 @@ public class Magnet : MonoBehaviour
         if ( MagnetEnabled )
         {
             Magnetic magnetic = collision.gameObject.GetComponent<Magnetic>();
-            if ( magnetic )
+            if ( magnetic != null && magnetic.IsMagnetic )
             {
                 Attach(collision, magnetic);
             }
@@ -116,7 +117,7 @@ public class Magnet : MonoBehaviour
         if ( MagnetEnabled )
         {
             Magnetic magnetic = collision.gameObject.GetComponent<Magnetic>();
-            if ( magnetic )
+            if ( magnetic != null && magnetic.IsMagnetic )
             {
                 Attach(collision, magnetic);
             }
@@ -129,6 +130,7 @@ public class Magnet : MonoBehaviour
         {
             return;
         }
+        Debug.Log("Attach magnet " + Time.time + " " + collision.gameObject.name);
         MagnetAttachSoundScheduled = true;
         MagnetJoint = gameObject.AddComponent<HingeJoint2D>();
         ContactPoint2D contact = collision.GetContact(0);
@@ -152,7 +154,7 @@ public class Magnet : MonoBehaviour
         {
             return false;
         }
-        Debug.Log("Detach magnet");
+        Debug.Log("Detach magnet " + Time.time);
         Destroy(MagnetJoint);
         MagnetJoint = null;
         return true;
