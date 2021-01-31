@@ -144,6 +144,16 @@ namespace LPUnityUtils
                 return source;
             }
 
+            public AudioSource GetAudioSource()
+            {
+                ManagedAudioSource src = GetSource();
+                if (src == null)
+                {
+                    return null;
+                }
+                return src.Source;
+            }
+
             private void SetFadeMultiplier(float fadeMultiplier)
             {
                 FadeMultiplier = fadeMultiplier;

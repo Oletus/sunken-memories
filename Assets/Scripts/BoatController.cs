@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using LPUnityUtils;
 
 // Unity generates a lot of spurious "never assigned" warnings for serialized variables, so disable those.
 #pragma warning disable 649
@@ -21,14 +22,26 @@ public class BoatController : MonoBehaviour
 
     [SerializeField] private Transform CameraReference;
 
+    [SerializeField] private SoundVariants MoveSound;
+    [SerializeField] private AudioSourcePlayer MoveSoundPlayer;
+    [SerializeField] private float BoatMoveSoundVolume = 0.5f;
+
     private float AngularVelocity;
     private float TiltAngle;
 
     private float HorizontalSpeed;
 
+    private float BoatSoundCurrentStrength;
+
+    private AudioSourcePlayer.PlayingSound PlayingBoatSound;
+
     private void Awake()
     {
         FishingLineJoint.anchor = RB.transform.worldToLocalMatrix.MultiplyPoint(FishingLine.transform.position);
+        if ( MoveSoundPlayer != null )
+        {
+            PlayingBoatSound = MoveSoundPlayer.Play(MoveSound);
+        }
     }
 
     private void Update()
@@ -37,9 +50,17 @@ public class BoatController : MonoBehaviour
         AngularVelocity = 0.0f;
         TiltAngle = 0.0f;
 
-        if (CameraReference != null)
+        if ( CameraReference != null )
         {
             CameraReference.position = RB.position;
+        }
+
+        if ( PlayingBoatSound != null && PlayingBoatSound.GetAudioSource() != null )
+        {
+            AudioSource boatSoundSource = PlayingBoatSound.GetAudioSource();
+            BoatSoundCurrentStrength = Mathf.MoveTowards(BoatSoundCurrentStrength, Mathf.Abs(HorizontalInput), 0.5f * Time.deltaTime);
+            boatSoundSource.pitch = BoatSoundCurrentStrength * 0.5f + 0.5f;
+            boatSoundSource.volume = BoatSoundCurrentStrength * BoatMoveSoundVolume;
         }
     }
 
