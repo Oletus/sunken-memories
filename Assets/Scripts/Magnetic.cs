@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class Magnetic : MonoBehaviour
 {
-    public bool IsMagnetic;
     public int TreasureID = -1;
 
     [ColorUsage(true, true)]
@@ -20,8 +19,6 @@ public class Magnetic : MonoBehaviour
 
     private void Awake()
     {
-        IsMagnetic = true;
-
         Magnet = GameObject.Find("Magnet");
         
         if (objectRenderer == null)

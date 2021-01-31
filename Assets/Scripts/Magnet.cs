@@ -110,7 +110,19 @@ public class Magnet : MonoBehaviour
         if ( MagnetEnabled )
         {
             Magnetic magnetic = collision.gameObject.GetComponent<Magnetic>();
-            if (magnetic && magnetic.IsMagnetic)
+            if ( magnetic )
+            {
+                Attach(collision, magnetic);
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if ( MagnetEnabled )
+        {
+            Magnetic magnetic = collision.gameObject.GetComponent<Magnetic>();
+            if ( magnetic )
             {
                 Attach(collision, magnetic);
             }
@@ -146,6 +158,7 @@ public class Magnet : MonoBehaviour
         {
             return false;
         }
+        Debug.Log("Detach magnet");
         Destroy(MagnetJoint);
         MagnetJoint = null;
         return true;
