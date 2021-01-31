@@ -218,6 +218,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Magnet: {fileID: 4111347858675153933}
+  TreasureFoundSound: {fileID: 11400000, guid: f586df98eed96ae489ed39c08e1b45a2, type: 2}
 --- !u!58 &1056355909466132716
 CircleCollider2D:
   m_ObjectHideFlags: 0
