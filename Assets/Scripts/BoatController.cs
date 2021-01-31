@@ -42,7 +42,7 @@ public class BoatController : MonoBehaviour
 
     private void Start()
     {
-        if (PlayingBoatSound != null && MoveSoundPlayer != null )
+        if ( MoveSound != null && MoveSoundPlayer != null )
         {
             PlayingBoatSound = MoveSoundPlayer.Play(MoveSound);
         }
