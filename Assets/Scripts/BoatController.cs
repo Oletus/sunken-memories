@@ -26,14 +26,14 @@ public class BoatController : MonoBehaviour
     [SerializeField] private AudioSourcePlayer MoveSoundPlayer;
     [SerializeField] private float BoatMoveSoundVolume = 0.5f;
 
+    private float BoatSoundCurrentStrength;
+
+    private AudioSourcePlayer.PlayingSound PlayingBoatSound;
+
     private float AngularVelocity;
     private float TiltAngle;
 
     private float HorizontalSpeed;
-
-    private float BoatSoundCurrentStrength;
-
-    private AudioSourcePlayer.PlayingSound PlayingBoatSound;
 
     private void Awake()
     {

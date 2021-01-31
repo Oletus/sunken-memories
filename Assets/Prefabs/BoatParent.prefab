@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 5106164444266924746}
   - component: {fileID: 4713480593261498996}
   - component: {fileID: 4597425912569805734}
+  - component: {fileID: 3079284734437329965}
   m_Layer: 0
   m_Name: FishingLine
   m_TagString: Untagged
@@ -288,6 +289,9 @@ MonoBehaviour:
   MaxSectionCount: 15
   FishingLineMaxSpeed: 3
   LineRenderer: {fileID: 2523423294730960355}
+  MoveSound: {fileID: 11400000, guid: 59cf22790d5209449b088237ce77c3fc, type: 2}
+  MoveSoundPlayer: {fileID: 3079284734437329965}
+  MoveSoundVolume: 0.5
 --- !u!50 &4713480593261498996
 Rigidbody2D:
   serializedVersion: 4
@@ -333,6 +337,19 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &3079284734437329965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5106164444266924749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62ee3abfd97b1b409923abf893b8b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinPlayIntervalForVoice: []
 --- !u!1 &5106164445339239972
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +408,7 @@ MonoBehaviour:
   CameraReference: {fileID: 6960395035116132349}
   MoveSound: {fileID: 11400000, guid: db076c5f82c97bf40960f3a110edf3fe, type: 2}
   MoveSoundPlayer: {fileID: 6911767582866551028}
+  BoatMoveSoundVolume: 0.5
 --- !u!114 &6911767582866551028
 MonoBehaviour:
   m_ObjectHideFlags: 0

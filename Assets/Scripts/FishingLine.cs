@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using LPUnityUtils;
 
 // Unity generates a lot of spurious "never assigned" warnings for serialized variables, so disable those.
 #pragma warning disable 649
@@ -21,6 +22,14 @@ public class FishingLine : MonoBehaviour
 
     [SerializeField] private LineRenderer LineRenderer;
 
+    [SerializeField] private SoundVariants MoveSound;
+    [SerializeField] private AudioSourcePlayer MoveSoundPlayer;
+    [SerializeField] private float MoveSoundVolume = 0.5f;
+
+    private float SoundCurrentStrength;
+
+    private AudioSourcePlayer.PlayingSound PlayingSound;
+
     private float FishingLineVertical;
 
     private List<Rigidbody2D> RopeSections; // Top section is last in the list.
@@ -33,6 +42,14 @@ public class FishingLine : MonoBehaviour
     {
         RopeSections = new List<Rigidbody2D>();
         FishingLineSpeedDown = 0.1f;
+    }
+
+    private void Start()
+    {
+        if (MoveSound != null && MoveSoundPlayer != null)
+        {
+            PlayingSound = MoveSoundPlayer.Play(MoveSound);
+        }
     }
 
     private void AddRopeTopSection()
@@ -90,6 +107,14 @@ public class FishingLine : MonoBehaviour
     private void Update ()
     {
         FishingLineVertical = Input.GetAxis("Vertical");
+
+        if (PlayingSound != null && PlayingSound.GetAudioSource() != null)
+        {
+            AudioSource boatSoundSource = PlayingSound.GetAudioSource();
+            SoundCurrentStrength = Mathf.MoveTowards(SoundCurrentStrength, Mathf.Abs(FishingLineVertical), 0.5f * Time.deltaTime);
+            boatSoundSource.pitch = SoundCurrentStrength * 0.5f + 0.5f;
+            boatSoundSource.volume = SoundCurrentStrength * MoveSoundVolume;
+        }
     }
 
     private void LateUpdate()
