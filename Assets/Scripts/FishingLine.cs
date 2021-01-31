@@ -40,6 +40,8 @@ public class FishingLine : MonoBehaviour
 
     private float TopJointAnchor; // A value of -0.5 means that the section is fully retracted, a value of 0.5 means fully extended.
 
+    private float LowerUntilTime;
+
     private void Awake ()
     {
         RopeSections = new List<Rigidbody2D>();
@@ -56,6 +58,9 @@ public class FishingLine : MonoBehaviour
         {
             PlayingSound2 = MoveSoundPlayer.Play(MoveSound2);
         }
+
+        // Lower the fishing line for a few seconds at start.
+        LowerUntilTime = Time.time + 1.8f;
     }
 
     private void AddRopeTopSection()
@@ -112,9 +117,12 @@ public class FishingLine : MonoBehaviour
 
     private void Update ()
     {
-        FishingLineVertical = Input.GetAxis("Vertical");
+        FishingLineVertical = Time.time < LowerUntilTime ? -1.5f : Input.GetAxis("Vertical");
 
-        SoundCurrentStrength = Mathf.MoveTowards(SoundCurrentStrength, FishingLineSpeedDown / FishingLineMaxSpeed, 1.5f * Time.deltaTime);
+        if (Time.time > LowerUntilTime + 0.1f)
+        {
+            SoundCurrentStrength = Mathf.MoveTowards(SoundCurrentStrength, FishingLineSpeedDown / FishingLineMaxSpeed, 1.5f * Time.deltaTime);
+        }
 
         if ( PlayingSound1 != null && PlayingSound1.GetAudioSource() != null)
         {
