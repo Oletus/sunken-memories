@@ -54,6 +54,6 @@ public class BoatController : MonoBehaviour
         HorizontalSpeed *= 0.99f;
         HorizontalSpeed = Mathf.Clamp(HorizontalSpeed, -HorizontalMaxSpeed, HorizontalMaxSpeed);
         RB.MovePosition(RB.position + HorizontalSpeed * Vector2.right * Time.fixedDeltaTime);
-        RB.MoveRotation(TiltAngle);
+        RB.rotation = TiltAngle;
     }
 }
