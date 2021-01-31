@@ -17,11 +17,9 @@ public class Magnet : MonoBehaviour
 
     [SerializeField] private SoundVariants MagnetPingSound;
     [SerializeField] private SoundVariants MagnetAttachSound;
-    [SerializeField] private float PingSoundInterval = 1.0f;
 
     private float NearestDistance;
 
-    private float NextPingTime;
     private bool MagnetAttachSoundScheduled;
 
     private HingeJoint2D MagnetJoint;
@@ -42,15 +40,11 @@ public class Magnet : MonoBehaviour
         MagnetEnabled = Input.GetButton("Submit");
         if ( !wasMagnetEnabled && MagnetEnabled )
         {
-            AudioSourcePlayer.GlobalPlayer.Play(MagnetPingSound);
-            NextPingTime = Time.time + PingSoundInterval;
+            if ( !UITreasure.TreasureUIOn )
+            {
+                AudioSourcePlayer.GlobalPlayer.Play(MagnetPingSound);
+            }
         }
-        /*if ( MagnetEnabled && Time.time > NextPingTime)
-        {
-            NextPingTime = Mathf.Max(Time.time - Time.deltaTime, NextPingTime) + PingSoundInterval;
-            Debug.Log("Play ping " + (1.0f - NearestDistance));
-            AudioSourcePlayer.GlobalPlayer.Play(MagnetPingSound, -1, 1.0f - NearestDistance);
-        }*/
 
         if (MagnetAttachSoundScheduled)
         {

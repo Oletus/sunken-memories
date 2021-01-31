@@ -7,16 +7,30 @@ using UnityEngine;
 
 public class UITreasure : MonoBehaviour
 {
-    public void CloseUI()
+    public static bool TreasureUIOn;
+
+    public IEnumerator CloseUI()
     {
+        // Wait for one frame so that magnet sound is disabled.
+        yield return null;
         gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        TreasureUIOn = true;
+    }
+
+    private void OnDisable()
+    {
+        TreasureUIOn = false;
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Submit") == true) 
+        if ( Input.GetButtonDown("Submit") == true ) 
         {
-            CloseUI();
+            StartCoroutine(CloseUI());
         }      
     }
 }
