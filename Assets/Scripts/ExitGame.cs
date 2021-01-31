@@ -5,18 +5,13 @@ using UnityEngine;
 // Unity generates a lot of spurious "never assigned" warnings for serialized variables, so disable those.
 #pragma warning disable 649
 
-public class UITreasure : MonoBehaviour
+public class ExitGame : MonoBehaviour
 {
-    public void CloseUI()
+    void Update ()
     {
-        gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (Input.GetButtonDown("Submit") == true) 
+        if (Input.GetKeyDown(KeyCode.Escape) == true)
         {
-            CloseUI();
-        }      
+            Application.Quit();
+        }
     }
 }
