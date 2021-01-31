@@ -22,14 +22,14 @@ namespace LPUnityUtils
             Variants = variants;
         }
 
-        public AudioSourcePlayer.PlayingSound Play()
+        public AudioSourcePlayer.PlayingSound Play(float volumeScale)
         {
             if ( LastPlayedVariants == null )
             {
                 LastPlayedVariants = new List<int>();
             }
             int playedIndex = -1;
-            AudioSourcePlayer.PlayingSound sound = Variants?.PlayOn(Player, LastPlayedVariants, out playedIndex);
+            AudioSourcePlayer.PlayingSound sound = Variants?.PlayOn(Player, LastPlayedVariants, out playedIndex, volumeScale);
             if ( sound != null )
             {
                 LastPlayedVariants.Add(playedIndex);

@@ -46,9 +46,9 @@ namespace LPUnityUtils
                 Index = index;
             }
 
-            internal PlayingSound Play(AudioSourcePlayer owner, Sound sound)
+            internal PlayingSound Play(AudioSourcePlayer owner, Sound sound, float volumeScale)
             {
-                sound.SetToSource(Source);
+                sound.SetToSource(Source, volumeScale);
                 Source.Play();
                 ++PlayCallIndex;
                 return new PlayingSound(owner, Index, PlayCallIndex, sound);
@@ -401,7 +401,7 @@ namespace LPUnityUtils
             return false;
         }
 
-        public PlayingSound Play(Sound sound, int voiceIndex = -1)
+        public PlayingSound Play(Sound sound, int voiceIndex = -1, float volumeScale = 1.0f)
         {
             if ( !MarkVoicePlaying(voiceIndex) )
             {
@@ -412,10 +412,10 @@ namespace LPUnityUtils
             {
                 return null;
             }
-            return source.Play(this, sound);
+            return source.Play(this, sound, volumeScale);
         }
 
-        public PlayingSound Play(SoundVariants variants, int voiceIndex = -1)
+        public PlayingSound Play(SoundVariants variants, int voiceIndex = -1, float volumeScale = 1.0f)
         {
             if ( variants == null )
             {
@@ -433,7 +433,7 @@ namespace LPUnityUtils
             {
                 SoundVariantPlayers.Add(variants, new SoundVariantPlayer(this, variants));
             }
-            return SoundVariantPlayers[variants].Play();
+            return SoundVariantPlayers[variants].Play(volumeScale);
         }
     }
 

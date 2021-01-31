@@ -32,10 +32,10 @@ namespace LPUnityUtils
             source.PlayOneShot(Clip, volumeScale);
         }
 
-        public void SetToSource(AudioSource source)
+        public void SetToSource(AudioSource source, float volumeScale = 1.0f)
         {
             source.clip = Clip;
-            source.volume = Volume;
+            source.volume = Volume * volumeScale;
             source.pitch = Pitch;
             source.loop = Loop;
         }
