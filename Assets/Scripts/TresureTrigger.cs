@@ -14,6 +14,15 @@ public class TresureTrigger : MonoBehaviour
 
     [SerializeField] private SoundVariants TreasureFoundSound;
 
+    public static int TreasuresFound;
+    public static bool AllTreasuresFound;
+
+    private void Awake()
+    {
+        TreasuresFound = 0;
+        AllTreasuresFound = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Magnetic magnetic = collision.GetComponent<Magnetic>();
@@ -27,6 +36,12 @@ public class TresureTrigger : MonoBehaviour
             return;
         }
         WinScreen[treasureID].SetActive(true);
+
+        ++TreasuresFound;
+        if ( TreasuresFound == WinScreen.Count )
+        {
+            AllTreasuresFound = true;
+        }
 
         Magnet.RemoveMagnetic(magnetic);
 
